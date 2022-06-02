@@ -1,16 +1,27 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 
+// function to handle user input 
+// function handleChange (evt) {
 
-// store user info; username, repo 
-const [user, setUser] = useState({
-    username : '',
-    repo : ''
-}); 
+// }
 
 function Verify(){
+
+    // store user info; username, repo 
+    const [user, setUser] = useState({
+        username : '',
+        repo : ''
+    }); 
+
     return (
-        <></>
+       <div> 
+
+        <input type="text" placeholder="username" /> 
+        <input type="text" placeholder="repository" />
+
+         <button> verify </button>
+       </div>
     )
 };
 
