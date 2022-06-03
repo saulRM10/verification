@@ -33,13 +33,22 @@ function Verify(){
 
        // setLoadData(true); 
 
-           // const response =  axios.get('https://api.github.com/repos/saulRM10/my-app/commits'); 
-            const response =  axios.get(`https://api.github.com/repos/${user.username}/${user.repo}/commits`); 
+           const response =  axios.get('https://api.github.com/repos/saulRM10/my-app/commits'); 
+            //const response =  axios.get(`https://api.github.com/repos/${user.username}/${user.repo}/commits`); 
             console.log(response); 
 
             response.then((result) => {
-                console.log(result.data[0].commit.author.date);
-                console.log(result.data[0].commit.author.name);
+                //console.log(result.data[0].commit.author.date);
+                var today = new Date().toISOString().slice(0,-14);
+                console.log(today); 
+                let foundDate = result.data[0].commit.author.date; 
+                console.log(foundDate.slice(0,-10));
+
+                if( today !== foundDate){
+                  // you loose 
+                  console.log('loser')
+                }
+                //console.log(result.data[0].commit.author.name);
             })
          
       
