@@ -38171,10 +38171,6 @@ function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "functio
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -38200,7 +38196,13 @@ function Verify() {
   var _useState3 = (0, _react.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
       repo = _useState4[0],
-      setRepo = _useState4[1];
+      setRepo = _useState4[1]; // to trigger fetch data 
+
+
+  var _useState5 = (0, _react.useState)(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      loadData = _useState6[0],
+      setLoadData = _useState6[1];
 
   var handleUsername = function handleUsername(evt) {
     setUsername(evt.target.value);
@@ -38217,53 +38219,18 @@ function Verify() {
     var user = {
       username: username,
       repo: repo
-    }; // console.log(user.username)
-    // make github api call 
-    // it will return a promise 
-    //const response = axios.get(`https://api.github.com/repos/${user.username}/${user.repo}/commits`); 
-    //console.log(response); 
+    }; // setLoadData(true); 
+    // const response =  axios.get('https://api.github.com/repos/saulRM10/my-app/commits'); 
+
+    var response = _axios.default.get("https://api.github.com/repos/".concat(user.username, "/").concat(user.repo, "/commits"));
+
+    console.log(response);
+    response.then(function (result) {
+      console.log(result.data[0].commit.author.date);
+      console.log(result.data[0].commit.author.name);
+    });
   };
 
-  var url = 'https://api.github.com/repos/saulRM10/my-app/commits/master';
-
-  var fetchData = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.default.mark(function _callee() {
-      var response;
-      return _regeneratorRuntime.default.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.prev = 0;
-              _context.next = 3;
-              return _axios.default.get(url);
-
-            case 3:
-              response = _context.sent;
-              console.log(response);
-              _context.next = 10;
-              break;
-
-            case 7:
-              _context.prev = 7;
-              _context.t0 = _context["catch"](0);
-              console.log(_context.t0.response);
-
-            case 10:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee, null, [[0, 7]]);
-    }));
-
-    return function fetchData() {
-      return _ref.apply(this, arguments);
-    };
-  }();
-
-  (0, _react.useEffect)(function () {
-    fetchData();
-  }, []);
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("form", {
     onSubmit: handleSubmit
   }, /*#__PURE__*/_react.default.createElement("label", null, " Username: "), /*#__PURE__*/_react.default.createElement("input", {

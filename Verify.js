@@ -14,6 +14,9 @@ function Verify(){
     const [username, setUsername] = useState(''); 
     const [repo, setRepo] = useState(''); 
 
+    // to trigger fetch data 
+    const [ loadData, setLoadData] = useState(false); 
+
     const handleUsername = (evt) => {
       setUsername(evt.target.value)
     }; 
@@ -28,27 +31,20 @@ function Verify(){
         // create a new object 
         const user = { username, repo }; 
 
-        
-        // console.log(user.username)
-        // make github api call 
-        // it will return a promise 
-         //const response = axios.get(`https://api.github.com/repos/${user.username}/${user.repo}/commits`); 
-         //console.log(response); 
-    }
-    const url = 'https://api.github.com/repos/saulRM10/my-app/commits/master'
-    const fetchData = async () =>{
-        try{
-          const response = await axios.get(url); 
-          console.log(response); 
-        }
-        catch(error){
-          console.log(error.response)
-        }
-    }
+       // setLoadData(true); 
 
-    useEffect(()=>{
-      fetchData(); 
-    }, []); 
+           // const response =  axios.get('https://api.github.com/repos/saulRM10/my-app/commits'); 
+            const response =  axios.get(`https://api.github.com/repos/${user.username}/${user.repo}/commits`); 
+            console.log(response); 
+
+            response.then((result) => {
+                console.log(result.data[0].commit.author.date);
+                console.log(result.data[0].commit.author.name);
+            })
+         
+      
+    }
+   
 
     return (
       <div> 
