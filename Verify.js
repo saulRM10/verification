@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-
+import axios from 'axios';
 
 // function to handle user input 
 // function handleChange (evt) {
@@ -29,7 +29,25 @@ function Verify(){
         
         // console.log(user.username)
         // make github api call 
+        // it will return a promise 
+         //const response = axios.get(`https://api.github.com/repos/${user.username}/${user.repo}/commits`); 
+         //console.log(response); 
     }
+    const url = 'https://api.github.com/repos/saulRM10/my-app/commits/master'
+    const fetchData = async () =>{
+        try{
+          const response = await axios.get(url); 
+          console.log(response); 
+        }
+        catch(error){
+          console.log(error.response)
+        }
+    }
+
+    useEffect(()=>{
+      fetchData(); 
+    }, []); 
+
     return (
       <div> 
          <form onSubmit={handleSubmit}> 
