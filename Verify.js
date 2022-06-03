@@ -1,6 +1,8 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 
+// to try and fix regen error 
+import regeneratorRuntime from "regenerator-runtime";
 // function to handle user input 
 // function handleChange (evt) {
 
