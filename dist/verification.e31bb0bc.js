@@ -33019,6 +33019,13 @@ function Verify() {
 
   var handleSubmit = function handleSubmit(evt) {
     evt.preventDefault(); // keep the page from reloading after submission 
+    // create a new object 
+
+    var user = {
+      username: username,
+      repo: repo
+    }; // console.log(user.username)
+    // make github api call 
   };
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("form", {

@@ -22,6 +22,13 @@ function Verify(){
 
     const handleSubmit = (evt) => {
         evt.preventDefault() // keep the page from reloading after submission 
+
+        // create a new object 
+        const user = { username, repo }; 
+
+        
+        // console.log(user.username)
+        // make github api call 
     }
     return (
       <div> 
