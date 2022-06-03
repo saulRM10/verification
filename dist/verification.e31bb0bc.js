@@ -32999,31 +32999,41 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 // }
 function Verify() {
   // store user info; username, repo 
-  var _useState = (0, _react.useState)({
-    username: '',
-    repo: ''
-  }),
+  var _useState = (0, _react.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
-      user = _useState2[0],
-      setUser = _useState2[1];
+      username = _useState2[0],
+      setUsername = _useState2[1];
 
-  var handleChange = function handleChange(evt) {
-    console.log(evt.target.value);
+  var _useState3 = (0, _react.useState)(''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      repo = _useState4[0],
+      setRepo = _useState4[1];
+
+  var handleUsername = function handleUsername(evt) {
+    setUsername(evt.target.value);
   };
 
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("input", {
-    onChange: handleChange,
+  var handleRepo = function handleRepo(evt) {
+    setRepo(evt.target.value);
+  };
+
+  var handleSubmit = function handleSubmit(evt) {
+    evt.preventDefault(); // keep the page from reloading after submission 
+  };
+
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/_react.default.createElement("label", null, " Username: "), /*#__PURE__*/_react.default.createElement("input", {
+    onChange: handleUsername,
     type: "text",
     placeholder: "username",
-    name: "username"
-  }), /*#__PURE__*/_react.default.createElement("input", {
-    onChange: handleChange,
+    value: username
+  }), /*#__PURE__*/_react.default.createElement("label", null, " Repository: "), /*#__PURE__*/_react.default.createElement("input", {
+    onChange: handleRepo,
     type: "text",
     placeholder: "repository",
-    name: "repository"
-  }), /*#__PURE__*/_react.default.createElement("button", {
-    onClick: handleChange(evt)
-  }, " verify "));
+    value: repo
+  }), /*#__PURE__*/_react.default.createElement("button", null, " verify ")));
 }
 
 ;
@@ -33044,7 +33054,7 @@ var _Verify = _interopRequireDefault(require("./Verify"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function App() {
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h1", null, " test "), /*#__PURE__*/_react.default.createElement(_Verify.default, null));
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Verify.default, null));
 }
 
 var _default = App;
@@ -33089,7 +33099,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61990" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49686" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

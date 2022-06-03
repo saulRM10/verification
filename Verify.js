@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 
 
 // function to handle user input 
@@ -9,23 +9,45 @@ import React, { useState } from 'react';
 function Verify(){
 
     // store user info; username, repo 
-    const [user, setUser] = useState({
-        username : '',
-        repo : ''
-    }); 
+    const [username, setUsername] = useState(''); 
+    const [repo, setRepo] = useState(''); 
 
-    const handleChange = (evt) => {
-      console.log(evt.target.value)
+    const handleUsername = (evt) => {
+      setUsername(evt.target.value)
     }; 
 
+    const handleRepo = (evt) => {
+      setRepo(evt.target.value)
+    }; 
+
+    const handleSubmit = (evt) => {
+        evt.preventDefault() // keep the page from reloading after submission 
+    }
     return (
-       <div> 
+      <div> 
+         <form onSubmit={handleSubmit}> 
 
-        <input onChange={handleChange} type="text" placeholder="username" name="username" /> 
-        <input onChange={handleChange} type="text" placeholder="repository" name="repository" />
+         <label> Username: </label>
+        <input 
+          onChange={handleUsername} 
+          type="text" 
+          placeholder="username" 
+          value={username}
 
-         <button onClick={handleChange(evt)}> verify </button>
+          /> 
 
+        <label> Repository: </label>
+        <input 
+           onChange={handleRepo}
+          type="text" 
+          placeholder="repository" 
+          value={repo} 
+   
+          />
+
+         <button > verify </button>
+
+         </form>
        </div>
     )
 };
