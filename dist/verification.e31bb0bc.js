@@ -33007,13 +33007,23 @@ function Verify() {
       user = _useState2[0],
       setUser = _useState2[1];
 
+  var handleChange = function handleChange(evt) {
+    console.log(evt.target.value);
+  };
+
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("input", {
+    onChange: handleChange,
     type: "text",
-    placeholder: "username"
+    placeholder: "username",
+    name: "username"
   }), /*#__PURE__*/_react.default.createElement("input", {
+    onChange: handleChange,
     type: "text",
-    placeholder: "repository"
-  }), /*#__PURE__*/_react.default.createElement("button", null, " verify "));
+    placeholder: "repository",
+    name: "repository"
+  }), /*#__PURE__*/_react.default.createElement("button", {
+    onClick: handleChange(evt)
+  }, " verify "));
 }
 
 ;

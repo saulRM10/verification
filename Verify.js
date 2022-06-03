@@ -14,13 +14,18 @@ function Verify(){
         repo : ''
     }); 
 
+    const handleChange = (evt) => {
+      console.log(evt.target.value)
+    }; 
+
     return (
        <div> 
 
-        <input type="text" placeholder="username" /> 
-        <input type="text" placeholder="repository" />
+        <input onChange={handleChange} type="text" placeholder="username" name="username" /> 
+        <input onChange={handleChange} type="text" placeholder="repository" name="repository" />
 
-         <button> verify </button>
+         <button onClick={handleChange(evt)}> verify </button>
+
        </div>
     )
 };
