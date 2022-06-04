@@ -38220,9 +38220,9 @@ function Verify() {
       username: username,
       repo: repo
     }; // setLoadData(true); 
+    //const response =  axios.get('https://api.github.com/repos/saulRM10/my-app/commits'); 
 
-    var response = _axios.default.get('https://api.github.com/repos/saulRM10/my-app/commits'); //const response =  axios.get(`https://api.github.com/repos/${user.username}/${user.repo}/commits`); 
-
+    var response = _axios.default.get("https://api.github.com/repos/".concat(user.username, "/").concat(user.repo, "/commits"));
 
     console.log(response);
     response.then(function (result) {
@@ -38231,10 +38231,13 @@ function Verify() {
       console.log(today);
       var foundDate = result.data[0].commit.author.date;
       console.log(foundDate.slice(0, -10));
+      console.log(today.localeCompare(foundDate)); //  // console.log(typeof(today)); 
 
-      if (today !== foundDate) {
-        // you loose 
+      if (today.localeCompare(foundDate)) {
         console.log('loser');
+      } else {
+        // you loose 
+        console.log('congrats');
       } //console.log(result.data[0].commit.author.name);
 
     });
